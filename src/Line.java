@@ -21,7 +21,13 @@ public class Line extends JPanel {
     }
 
     public void ChangeSize(int c) {
-        point_2.Set(point_2.GetX()+c, point_2.GetY()+c);
+        double length = Math.sqrt((point_2.GetX() - point_1.GetX()) * (point_2.GetX() - point_1.GetX()) + (point_2.GetY() - point_1.GetY()) * (point_2.GetY() - point_1.GetY()));
+        if (length != 0) {
+            int dx = (int) (c * (point_2.GetX() - point_1.GetX()) / length);
+            int dy = (int) (c * (point_2.GetY() - point_1.GetY()) / length);
+            point_1.Set(point_1.GetX() - dx, point_1.GetY() - dy);
+            point_2.Set(point_2.GetX() + dx, point_2.GetY() + dy);
+        }
     }
 
     public void Show(boolean vision) {
