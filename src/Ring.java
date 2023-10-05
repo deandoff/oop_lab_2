@@ -4,7 +4,8 @@ import java.awt.*;
 public class Ring extends JPanel {
     private final Point point = new Point();
     private int D;
-    private final Color color;
+    private Color color;
+    private final Circle first, second;
 
     public Ring (int x, int y, int r, Color color) {
         setLayout(null);
@@ -13,9 +14,10 @@ public class Ring extends JPanel {
         if ((y+r) >= 500) { r = 500 - y;}
         if (r > x) { r = x; }
         if (r >= y) { r = y; }
+        first = new Circle(x, y, r, color);
+        second = new Circle(x, y, r * 2/3, color);
         D = r*2;
         point.Set(x,y);
-        this.color = color;
         System.out.println("Ring created");
     }
 
